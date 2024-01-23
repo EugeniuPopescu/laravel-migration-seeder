@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("arrival_station");
             $table->dateTime("departure_time");
             $table->dateTime("arrival_time");
-            $table->integer("train_code", 6)->unique();
+            $table->string("train_code")->unique();
             $table->integer("number_carriages");
             $table->boolean("in_time");
             $table->boolean("deleted")->default(0);
