@@ -12,7 +12,7 @@ class TrainsTableSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(Faker $faker): void
     {
         $trains = [
             [
@@ -50,6 +50,21 @@ class TrainsTableSeeder extends Seeder
             $newTrain->number_carriages = $train["number_carriages"];
             $newTrain->in_time = $train["in_time"];
             $newTrain->deleted = $train["deleted"];
+            $newTrain->save();
+        }
+
+
+        // faker
+        for ($i = 0; $i < 10; $i++) {
+            $newTrain->society = $faker->company();
+            $newTrain->departure_station = $faker->city();
+            $newTrain->arrival_station = $faker->city();
+            $newTrain->departure_time = $faker->dateTimeInInterval('-1 days', '+3 week');
+            $newTrain->arrival_time = $faker->dateTimeInInterval('-1 days', '+3 week');
+            $newTrain->train_code = $faker->bothify('??-####');
+            $newTrain->number_carriages = 20;
+            $newTrain->in_time = $faker->boolean();
+            $newTrain->deleted = $faker->boolean();
             $newTrain->save();
         }
     }
